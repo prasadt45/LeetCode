@@ -25,10 +25,10 @@ public:
         int ind = 0 ; 
         for(int i = 0 ; i<n ; i++){
             for(int j = 0 ; j<m ;j++){
-                if(board[i][j]==word[ind]){
-                    if(f(ind , i , j  , board , word , n, m )){
+                if(board[i][j]==word[ind] && f(ind , i , j  , board , word , n, m ) ){
+                    
                         return true ; 
-                    }
+                    
                 }
             }
         }
