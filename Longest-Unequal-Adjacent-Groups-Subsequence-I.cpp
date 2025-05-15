@@ -6,12 +6,12 @@ public:
         if (n == 0) return ans;
 
         ans.push_back(words[0]);
-        int lastGroup = groups[0];
+        int lg = groups[0];
 
         for (int i = 1; i < n; i++) {
-            if (groups[i] != lastGroup) {
+            if (groups[i] != lg) {
                 ans.push_back(words[i]);
-                lastGroup = groups[i];
+                lg = groups[i];
             }
         }
 
