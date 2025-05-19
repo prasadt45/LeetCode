@@ -1,22 +1,20 @@
 class Solution {
 public:
     int countPrefixSuffixPairs(vector<string>& words) {
-         int n = words.size();
-        int ans = 0;
-        for (int i = 0; i < n; i++) {
-            string s1 = words[i];
-            for (int j = i + 1; j < n; j++) {
-                string s2 = words[j];
-                if (s2.length() < s1.length()) 
-                    continue;
-                string pre = s2.substr(0, s1.length());
-                string suf = s2.substr(s2.length() - s1.length());
-                if (pre == s1 && suf == s1) {
-                    ans++;
+        int n = words.size() ; 
+        int cnt  =0 ; 
+        for(int i = 0 ; i<n ; i++){
+            string w1 = words[i] ; 
+            for(int j =  i+1 ; j<n ; j++){
+                string w2 = words[j] ; 
+                if(w2.length()<w1.length()) continue ; 
+                string p = w2.substr(0 , w1.length()) ; 
+                string s = w2.substr(w2.length() - w1.length()) ; 
+                if(p==w1 && s==w1){
+                    cnt++ ; 
                 }
             }
         }
-        return ans;
-        
+        return cnt  ; 
     }
 };
