@@ -1,25 +1,19 @@
 class Solution {
     private:
     int f(int i , int j  , vector<vector<int>>&grid , vector<vector<int>>&dp){
-        
+        int mod = 1e9+7 ; 
         if(i==0 && j==0){
             return grid[0][0] ; 
         }
         if(i<0 || j<0){
-            return INT_MAX  ;
+            return mod  ;
         }
         if(dp[i][j]!=-1){
             return dp[i][j] ; 
         }
-        int lc =  f(i-1 , j ,  grid , dp) ; 
-        int rc =     f(i , j-1 ,  grid , dp) ;
-        int cst = INT_MAX ;  
-        if(lc!=cst){
-        lc = min(cst , lc +grid[i][j]); 
-        }
-        if(rc!=cst){
-           rc =  min(cst , rc + grid[i][j]);
-        }
+        int lc =  f(i-1 , j ,  grid , dp) + grid[i][j]; 
+        int rc =     f(i , j-1 ,  grid , dp)+grid[i][j] ;
+       
         return dp[i][j] =  min(lc ,rc) ; 
     }
 public:
