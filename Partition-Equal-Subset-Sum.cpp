@@ -1,26 +1,4 @@
 class Solution {
-    private:
-    bool f(int i ,  int s , int n , vector<int>&nums , vector<vector<int>>&dp){
-         if(s==0){
-            return true ; 
-         }
-         if(i==0){
-            if(nums[0]==s){
-                return true ; 
-            }
-                return false ; 
-         }
-         if(dp[i][s]!=-1){
-            return dp[i][s] ; 
-         }
-         bool nt = f(i-1 , s , n , nums , dp) ; 
-         bool t = false ; 
-         if(s>=nums[i]){
-            t = f(i-1 , s-nums[i] , n , nums , dp) ; 
-         }
-         return dp[i][s] =  nt||t ; 
-
-    }
 public:
     bool canPartition(vector<int>& nums) {
         int as = 0 ; 
@@ -32,8 +10,24 @@ public:
             return false ; 
         }
         as = as/2 ; 
-        vector<vector<int>>dp(n , vector<int>(as+1 , -1) ) ; 
-        return f(n-1 , as , n , nums , dp) ; 
+        vector<vector<bool>>dp(n , vector<bool>(as+1 , false) ) ; 
+        for(int i = 0 ; i<n ; i++){
+            dp[i][0] = true ; 
+        }
+        if(nums[0]<=as){
+          dp[0][nums[0]] = true ; 
+        }
+        for(int i = 1 ; i<n ; i++){
+           for(int j = 1 ; j<=as ; j++){
+            bool nt = dp[i-1][j] ; 
+            bool t = false ; 
+            if(nums[i]<=j){
+                t = dp[i-1][j-nums[i]] ; 
+            }
+            dp[i][j] = t||nt ; 
+           }
+        }
+        return dp[n-1][as] ; 
 
     }
 };
