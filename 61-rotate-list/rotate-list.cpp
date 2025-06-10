@@ -10,8 +10,9 @@
  */
 class Solution {
     private:
-    ListNode* f(ListNode* temp , int l){
+    ListNode* f(ListNode* head , int l){
         int i = 1 ; 
+        ListNode* temp = head ; 
         while(temp){ 
             if(i==l){
                 return temp ; 
@@ -19,7 +20,7 @@ class Solution {
             i++ ;
             temp=temp->next ; 
         }
-        return temp ;
+        return head ;
     }
 public:
     ListNode* rotateRight(ListNode* head, int k) {
