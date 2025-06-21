@@ -2,7 +2,7 @@ class Solution {
      private:
     int f(int i , int b , vector<int>&prices , vector<vector<int>>&dp , int fee){
         int n = prices.size() ; 
-        if(i>=n){
+        if(i==n){
             return 0 ; 
         }
         if(dp[i][b]!=-1){
